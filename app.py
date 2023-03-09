@@ -96,6 +96,8 @@ def temp_start(start):
 
 @app.route("/api/v1.0/<start>/<end>")
 def temp_start_end(start, end):
+    start = dt.datetime.strptime(start, "%m%d%Y")
+    end = dt.datetime.strptime(end, "%m%d%Y")    
     temperature_se = session.query(func.min(Measurement.tobs), 
                                    func.max(Measurement.tobs), 
                                    func.avg(Measurement.tobs))\
